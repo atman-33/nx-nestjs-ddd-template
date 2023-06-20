@@ -28,6 +28,8 @@ npx nx generate @nx/js:library infrastructure --directory=shared --importPath=@l
 - unit test runner => none
 - bundler => none
 
+> if you don't need shared-infrastructure.ts, remove it.
+
 ## install graphql etc for nestjs
 ```
 npm install @nestjs/graphql @nestjs/apollo graphql apollo-server-express
