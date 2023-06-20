@@ -1,1 +1,1 @@
-export * from './lib/shared-infrastructure';
+export { AbstractFactory } from './lib/factories';

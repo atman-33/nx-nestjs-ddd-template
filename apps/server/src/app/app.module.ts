@@ -5,13 +5,16 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RegionsModule } from './regions/regions.module';
 
+import { env } from '@libs/shared/config';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['./apps/server/src/.env'],
+      load: [() => ({ ...env })],
       isGlobal: true,
       validationSchema: Joi.object({
         PORT: Joi.number().required(),
+        DATABASE_TYPE: Joi.string().required(),
         ORACLE_USER: Joi.string().required(),
         ORACLE_PASSWORD: Joi.string().required(),
         ORACLE_DATA_SOURCE: Joi.string().required(),
@@ -22,4 +25,4 @@ import { RegionsModule } from './regions/regions.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

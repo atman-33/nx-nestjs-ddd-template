@@ -12,6 +12,28 @@ npx create-nx-workspace@latest --preset nest
 - workspace name? => nx-nestjs-ddd-template
 - app name? => server
 
+## add Angular app
+```
+npm install @nrwl/angular
+```
+```
+nx generate @nrwl/angular:application --name client \
+--style scss \
+--prefix app \
+--routing
+```
+
+*add angular material*  
+```
+npm install @angular/material --dev
+npx nx g @angular/material:ng-add --project=client
+```
+- custom theme? => pink-bluegrey(no matter what you choose)
+- global angular material typography styles? => true
+- include angular animations module? => do not include
+
+> outside of nx, ng add @angular/material
+
 ## add domain in the library
 ```
 npx nx generate @nx/js:library domain --directory=shared --importPath=@libs/shared/domain --tags=scope:shared,type:domain
@@ -29,6 +51,25 @@ npx nx generate @nx/js:library infrastructure --directory=shared --importPath=@l
 - bundler => none
 
 > if you don't need shared-infrastructure.ts, remove it.
+
+## add config in the library
+```
+npx nx generate @nx/js:library config --directory=shared --importPath=@libs/shared/config --tags=scope:shared,type:config
+```
+- unit test runner => none
+- bundler => none
+
+> if you don't need shared-config.ts, remove it.
+
+## install oracledb
+```
+npm install oracledb @types/oracledb
+```
+
+## install sqlite3
+```
+npm install sqlite3
+```
 
 ## install graphql etc for nestjs
 ```
