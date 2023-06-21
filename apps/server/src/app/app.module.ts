@@ -18,6 +18,7 @@ import { env } from '@libs/shared/config';
         ORACLE_USER: Joi.string().required(),
         ORACLE_PASSWORD: Joi.string().required(),
         ORACLE_DATA_SOURCE: Joi.string().required(),
+        SQLITE_PATH: Joi.string().required(),
       }),
     }),
     RegionsModule

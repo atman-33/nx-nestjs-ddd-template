@@ -7,5 +7,6 @@ export const env = {
   DATABASE_TYPE: process.env['DATABASE_TYPE'],
   ORACLE_USER: process.env['ORACLE_USER'],
   ORACLE_PASSWORD: process.env['ORACLE_PASSWORD'],
-  ORACLE_DATA_SOURCE: process.env['ORACLE_DATA_SOURCE']
+  ORACLE_DATA_SOURCE: process.env['ORACLE_DATA_SOURCE'],
+  SQLITE_PATH: process.env['SQLITE_PATH']
 };
