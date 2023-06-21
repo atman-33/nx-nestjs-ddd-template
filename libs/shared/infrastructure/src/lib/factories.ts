@@ -1,11 +1,12 @@
 import { env } from '@libs/shared/config';
-import { IRegionRepository } from '@libs/shared/domain';
+import { ICountryRepository, IRegionRepository } from '@libs/shared/domain';
+import { CountryOracleRepository } from './oracle/country-oracle.repository';
 import { RegionOracleRepository } from './oracle/region-oracle.repository';
 
 export abstract class AbstractFactory {
 
     abstract createRegionRepository(): IRegionRepository;
-    // abstract createCountriesRepository(): ICountriesRepository;
+    abstract createCountryRepository(): ICountryRepository;
 
     static create(): AbstractFactory {
         if (env.DATABASE_TYPE === 'oracle') {
@@ -24,9 +25,9 @@ class OracleFactory extends AbstractFactory{
         return new RegionOracleRepository();
     }
 
-    // override createCountryRepository(): ICountryRepository {
-    //     return new CountryOracleRepository();
-    // }
+    override createCountryRepository(): ICountryRepository {
+        return new CountryOracleRepository();
+    }
 }
 
 // export class SQLiteFactory extends AbstractFactory{
