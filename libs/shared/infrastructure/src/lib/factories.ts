@@ -2,6 +2,8 @@ import { env } from '@libs/shared/config';
 import { ICountryRepository, IRegionRepository } from '@libs/shared/domain';
 import { CountryOracleRepository } from './oracle/country-oracle.repository';
 import { RegionOracleRepository } from './oracle/region-oracle.repository';
+import { CountrySQLiteRepository } from './sqlite/country-sqlite.repository';
+import { RegionSQLiteRepository } from './sqlite/region-sqlite.repository';
 
 export abstract class AbstractFactory {
 
@@ -13,7 +15,7 @@ export abstract class AbstractFactory {
             return new OracleFactory();
             
         } else if (env.DATABASE_TYPE === 'sqlite') {
-            // return new SQLiteFaFactor()
+            return new SQLiteFactory()
         }
 
         throw new Error('env.DATABASE_TYPE is wrong.');
@@ -30,12 +32,12 @@ class OracleFactory extends AbstractFactory{
     }
 }
 
-// export class SQLiteFactory extends AbstractFactory{
-//     override createRegionRepository(): IRegionRepository {
-//         return new RegionSQLiteRepository();
-//     }
+export class SQLiteFactory extends AbstractFactory{
+    override createRegionRepository(): IRegionRepository {
+        return new RegionSQLiteRepository();
+    }
 
-//     override createCountryRepository(): ICountryRepository {
-//         return new CountrySQLiteRepository();
-//     }
-// }
+    override createCountryRepository(): ICountryRepository {
+        return new CountrySQLiteRepository();
+    }
+}

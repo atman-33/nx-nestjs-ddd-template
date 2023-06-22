@@ -19,7 +19,7 @@ export class SQLiteDao {
             for (const [key, value] of Object.entries(parameters)) {
                 replacedSql = replacedSql.replace(new RegExp(`@${key}`, 'g'), "'" + value + "'");
             }
-            console.log(`query sql: ${replacedSql}`);
+            console.log(`sqlite query sql: ${replacedSql}`);
 
             db.all(replacedSql, (error, rows) => {
                 if (error) {
@@ -65,7 +65,7 @@ export class SQLiteDao {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public static executeUpsert(insert: string, update: string, parameters: any[]): Promise<void> {
+    public static executeUpsert(insert: string, update: string, parameters: any): Promise<void> {
         let replacedSql: string;
         const db = new sqlite3.Database(SQLiteDao.filePath);
 
@@ -105,7 +105,7 @@ export class SQLiteDao {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public static executeSql(sql: string, parameters: any[]): Promise<void> {
+    public static executeSql(sql: string, parameters: any): Promise<void> {
         const db = new sqlite3.Database(SQLiteDao.filePath);
 
         return new Promise((resolve, reject) => {
