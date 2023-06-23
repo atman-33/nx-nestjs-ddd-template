@@ -20,8 +20,8 @@ export class RegionSQLiteRepository implements IRegionRepository {
     }
 
     public save(entity: RegionEntity): Promise<void> {
-        const insertSql = "INSERT INTO regions (region_id, region_name) VALUES(:region_id, :region_name)";
-        const updateSql = "UPDATE regions SET region_name = :region_name WHERE region_id = :region_id";;
+        const insertSql = "INSERT INTO regions (region_id, region_name) VALUES(@region_id, @region_name)";
+        const updateSql = "UPDATE regions SET region_name = @region_name WHERE region_id = @region_id";;
 
         const parameters = {
             region_id: entity.regionId,
@@ -40,7 +40,7 @@ export class RegionSQLiteRepository implements IRegionRepository {
     }
 
     public delete(entity: RegionEntity): Promise<void> {
-        const deleteSql = 'DELETE FROM regions WHERE region_id = :region_id';
+        const deleteSql = 'DELETE FROM regions WHERE region_id = @region_id';
         const parameters = { region_id: entity.regionId };
 
         return new Promise((resolve, reject) => {
